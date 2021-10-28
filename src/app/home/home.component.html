@@ -1,0 +1,53 @@
+<div id="filter-layer" (click)="dropDownOff()"></div>
+<div class="home" [ngClass]="{'dark-mode': darkMode == true}">
+    <div class="home__header">
+        <div class="home__header--search-container">
+            <input type="text" [formControl]="searchCtrl" placeholder="Search for a country..." (keyup)="searchCountryByName($event)">
+            <svg class="search" fill="#858585" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px">    <path d="M 9 2 C 5.1458514 2 2 5.1458514 2 9 C 2 12.854149 5.1458514 16 9 16 C 10.747998 16 12.345009 15.348024 13.574219 14.28125 L 14 14.707031 L 14 16 L 20 22 L 22 20 L 16 14 L 14.707031 14 L 14.28125 13.574219 C 15.348024 12.345009 16 10.747998 16 9 C 16 5.1458514 12.854149 2 9 2 z M 9 4 C 11.773268 4 14 6.2267316 14 9 C 14 11.773268 11.773268 14 9 14 C 6.2267316 14 4 11.773268 4 9 C 4 6.2267316 6.2267316 4 9 4 z"/></svg>
+            <svg *ngIf="searchCtrl.value != ''" (click)="restore()" class="close" xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path fill="#3B4262" fill-rule="evenodd" d="M16.97 0l2.122 2.121-7.425 7.425 7.425 7.425-2.121 2.12-7.425-7.424-7.425 7.425L0 16.97l7.425-7.425L0 2.121 2.121 0l7.425 7.425L16.971 0z" opacity=".25"/></svg>
+        </div>
+        <div class="home__header--filter" id="filter">
+            <div class="dropdown" (click)="dropDown()">
+                <span>{{ filterName }}</span>
+                <div class="dropdown__close" (click)="restoreFilter($event)">
+                    <svg *ngIf="filterName != 'Filter by Region'" class="close" xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path fill="#3B4262" fill-rule="evenodd" d="M16.97 0l2.122 2.121-7.425 7.425 7.425 7.425-2.121 2.12-7.425-7.424-7.425 7.425L0 16.97l7.425-7.425L0 2.121 2.121 0l7.425 7.425L16.971 0z" opacity=".25"/></svg>
+                </div>
+                <div>
+                    <img src="assets/images/icon-arrow.svg">
+                </div>
+            </div>
+            <div id="drop-down" class="content">
+                <div class="content__row" (click)="addRegion('Africa')">
+                    <span>Africa</span>
+                </div>
+                <div class="content__row" (click)="addRegion('America')">
+                    <span>America</span>
+                </div>
+                <div class="content__row" (click)="addRegion('Asia')">
+                    <span>Asia</span>
+                </div>
+                <div class="content__row" (click)="addRegion('Europe')">
+                    <span>Europe</span>
+                </div>
+                <div class="content__row" (click)="addRegion('Oceania')">
+                    <span>Oceania</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="home__content" [ngClass]="{'dark-mode': darkMode == true}">
+        <div class="home__content--loader" *ngIf="isLoading == true"></div>
+        <div class="home__content--empty" *ngIf="countries?.length == 0">The searched value does not exist.</div>
+        <div class="home__content--card" *ngFor="let country of countries" (click)="navigateToCountryPage(country.cca3)">
+            <div class="img-container">
+                <img [src]="country.flags.png">
+            </div>
+            <div class="text-container">
+                <span class="text-container__title">{{ country.name.common }}</span>
+                <span><span class="text-container__bold">Population: </span>{{ formatNumber(country.population) }}</span>
+                <span><span class="text-container__bold">Region: </span>{{ country.region }}</span>
+                <span><span class="text-container__bold">Capital: </span>{{ country.capital }}</span>
+            </div>
+        </div>
+    </div>
+</div>

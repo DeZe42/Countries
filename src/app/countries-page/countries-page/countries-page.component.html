@@ -1,0 +1,60 @@
+<div class="countries-page" [ngClass]="{'dark-mode': darkMode == true}">
+    <div class="countries-page__back-container">
+        <div class="countries-page__back-container--button" (click)="back()">
+            <svg height="512px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "/></svg>
+            <span>Back</span>
+        </div>
+    </div>
+    <div class="countries-page__content">
+        <div class="countries-page__content--img-container">
+            <img [src]="countryData?.flags?.png">
+        </div>
+        <div class="countries-page__content--container">
+            <span class="title">{{ countryData?.name?.common }}</span>
+            <div class="text-container">
+                <div class="text-container__column">
+                    <div class="text-container__column--row">
+                        <span class="row-title">Native Name: </span>
+                        <span class="row-text" *ngFor="let native of getObject(countryData?.name?.nativeName)">{{ native.common }}</span>
+                    </div>
+                    <div class="text-container__column--row">
+                        <span class="row-title">Population: </span>
+                        <span class="row-text">{{ formatNumber(countryData?.population) }}</span>
+                    </div>
+                    <div class="text-container__column--row">
+                        <span class="row-title">Region: </span>
+                        <span class="row-text">{{ countryData?.region }}</span>
+                    </div>
+                    <div class="text-container__column--row">
+                        <span class="row-title">Sub Region: </span>
+                        <span class="row-text">{{ countryData?.subregion }}</span>
+                    </div>
+                    <div class="text-container__column--row">
+                        <span class="row-title">Capital: </span>
+                        <span class="row-text">{{ countryData?.capital }}</span>
+                    </div>
+                </div>
+                <div class="text-container__column">
+                    <div class="text-container__column--row">
+                        <span class="row-title">Top Level Domain:</span>
+                        <span class="row-text" *ngFor="let domain of countryData?.tld">{{ domain }}</span>
+                    </div>
+                    <div class="text-container__column--row">
+                        <span class="row-title">Currencies:</span>
+                        <span class="row-text" *ngFor="let currency of getObject(countryData?.currencies); let last = last">{{ currency.symbol }}, {{ currency.name }}<span *ngIf="getObject(countryData?.languages).length > 1 && !last">,</span></span>
+                    </div>
+                    <div class="text-container__column--row">
+                        <span class="row-title">Languages:</span>
+                        <span class="row-text" *ngFor="let language of getObject(countryData?.languages); let last = last">{{ language }}<span *ngIf="getObject(countryData?.languages).length > 1 && !last">,</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <span class="row--title">Border Countries:</span>
+                <div class="row--border" *ngFor="let border of countryData?.borders" (click)="goToCountry(border)">
+                    <span>{{ border }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

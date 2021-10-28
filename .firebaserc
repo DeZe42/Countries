@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "countries-93001": {
+      "hosting": {
+        "Countries": [
+          "countries-93001"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "countries-93001"
+  }
+}
