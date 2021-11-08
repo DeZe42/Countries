@@ -2,12 +2,12 @@ export const environment = {
   production: true,
   apiURL: "https://restcountries.com/v3.1/",
   firebase: {
-    apiKey: "AIzaSyCWsut2EQDdI4Mv5aSsLyxYalzZhQ9Ox8Q",
-    authDomain: "countries-93001.firebaseapp.com",
-    projectId: "countries-93001",
-    storageBucket: "countries-93001.appspot.com",
-    messagingSenderId: "443341480576",
-    appId: "1:443341480576:web:60b0aa4d47853028da7c65",
-    measurementId: "G-E57382H97V"
+    apiKey: "AIzaSyAi0t6KueK0cCbRgMxz0d0F52QZWRmS20o",
+    authDomain: "portfolio-projects-4b9da.firebaseapp.com",
+    projectId: "portfolio-projects-4b9da",
+    storageBucket: "portfolio-projects-4b9da.appspot.com",
+    messagingSenderId: "949907467161",
+    appId: "1:949907467161:web:03041d3956948ecf494108",
+    measurementId: "G-5HKNRRPLBZ"
   }
 };

@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "countries-63843",
     "public": "dist",
     "ignore": [
       "firebase.json",
